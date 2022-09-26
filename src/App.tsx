@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import InputField from 'components/InputField/InputField';
+import { Todo } from 'modal';
+import React, { useState } from 'react';
+import { nanoid } from 'nanoid';
 import './App.scss';
 
 function App() {
+  const [todo, setTodo] = useState('');
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  const handleAdd = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (todo) {
+      setTodos([...todos, { id: nanoid(), isDone: false, todo: todo }]);
+      setTodo('');
+    }
+  };
+
+  console.log(todos);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className="heading">Taskify</h1>
+
+      <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
     </div>
   );
 }
