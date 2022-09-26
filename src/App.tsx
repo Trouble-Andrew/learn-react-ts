@@ -1,8 +1,9 @@
 import InputField from 'components/InputField/InputField';
-import { Todo } from 'modal';
+import { Todo } from 'model';
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import './App.scss';
+import TodoList from 'components/TodoList/TodoList';
 
 function App() {
   const [todo, setTodo] = useState('');
@@ -24,6 +25,7 @@ function App() {
       <h1 className="heading">Taskify</h1>
 
       <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
+      <TodoList todos={todos} setTodos={setTodos} />
     </div>
   );
 }
