@@ -1,21 +1,21 @@
 import SingleTodo from 'components/Todo/SingleTodo';
-import { Todo } from 'model';
+import { Actions, Todo } from 'model';
 import React from 'react';
 import styles from './TodoList.module.scss';
 
 interface Props {
   todos: Todo[];
-  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  dispatch: React.Dispatch<Actions>;
 }
 
-function TodoList({ todos, setTodos }: Props) {
+function TodoList({ todos, dispatch }: Props) {
   return (
     <div className={styles.todos}>
       <ul className={styles.list}>
         {todos.map((todo) => {
           return (
             <li key={todo.id} className={styles.listItem}>
-              <SingleTodo todo={todo} todos={todos} setTodos={setTodos} />
+              <SingleTodo todo={todo} todos={todos} dispatch={dispatch} />
             </li>
           );
         })}
